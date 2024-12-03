@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'reactstrap'
+import { Button, Table } from 'reactstrap'
 
 
 export default class ProductList extends Component {
@@ -49,6 +49,9 @@ export default class ProductList extends Component {
                                     </td>
                                     <td>
                                         {product.unitsInStock}
+                                    </td>
+                                    <td>
+                                        <Button color="info" disabled={product.unitsInStock < 1 ? true : false} onClick={() => this.props.addToCart(product)}>Add</Button>
                                     </td>
                                 </tr>
                             ))
