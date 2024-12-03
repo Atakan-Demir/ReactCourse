@@ -7,10 +7,23 @@ import { Container, Row, Col } from "reactstrap";
 // App.js'i class component'te çeviriyoruz.
 export default class App extends Component {
 
-  state = { currentCategory: "" };
+  state = { currentCategory: "", products: [] };
 
   changeCategory = (category) => {
     this.setState({ currentCategory: category.categoryName });
+    this.getProducts(category.id);
+  };
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  getProducts = (id) => {
+    let url = "http://localhost:3000/products";
+    if (id) {
+      url += "?categoryId=" + id;
+    }
+    fetch(url).then(response => response.json()).then(data => this.setState({ products: data }));
   };
 
   render() {
@@ -27,7 +40,7 @@ export default class App extends Component {
               <CategoryList currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} info={categoryInfo} />
             </Col>
             <Col xs="9">
-              <ProductList currentCategory={this.state.currentCategory} info={productInfo} />
+              <ProductList products={this.state.products} currentCategory={this.state.currentCategory} info={productInfo} />
             </Col>
           </Row>
         </Container>
