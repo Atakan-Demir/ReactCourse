@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import {
     UncontrolledDropdown,
     DropdownToggle,
@@ -17,14 +18,14 @@ export default class CartSummary extends Component {
                 <DropdownToggle nav caret>
                     Cart - {this.props.cart.length}
                 </DropdownToggle>
-                <DropdownMenu end>
+                <DropdownMenu end >
                     {
                         this.props.cart.map(p => (
                             <DropdownItem key={p.product.id}><Badge color='danger' onClick={() => this.props.removeFromCart(p.product)}> X </Badge> {p.product.productName} - <Badge color='success'>{p.quantity}</Badge></DropdownItem>
                         ))
                     }
                     <DropdownItem divider />
-                    <DropdownItem>Reset</DropdownItem>
+                    <DropdownItem><Link to="/cart">Cart</Link></DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
         )
