@@ -12,5 +12,5 @@ export const decreaseCounter = () => ({
 
 export const increaseByTwoCounter = () => ({
     type: actionTypes.INCREASE_BY_TWO_COUNTER,
-    payload: 1
+    payload: 2
 })
