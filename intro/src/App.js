@@ -7,6 +7,8 @@ import alertify from "alertifyjs";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./NotFound";
 import CartList from "./CartList";
+import FormDemo1 from "./FormDemo1";
+import FormDemo2 from "./FormDemo2";
 
 
 // App.js'i class component'te çeviriyoruz.
@@ -87,7 +89,10 @@ export default class App extends Component {
                     removeFromCart={this.removeFromCart}
                   />
                 } />
+                <Route path="/form1" Component={FormDemo1} />
+                <Route path="/form2" Component={FormDemo2} />
                 <Route path="*" Component={NotFound} />
+
               </Routes>
 
             </Col>

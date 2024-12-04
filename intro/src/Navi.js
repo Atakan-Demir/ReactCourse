@@ -5,10 +5,13 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
+    NavItem,
+    NavLink
 
 
 } from 'reactstrap';
 import CartSummary from './CartSummary';
+import { Link } from 'react-router-dom';
 
 // bu bir Class Component
 export default class Navi extends Component {
@@ -31,8 +34,16 @@ export default class Navi extends Component {
                 <Navbar color='light' light expand="md">
                     <NavbarBrand href="/">App</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
+
                     <Collapse isOpen={this.isOpen} navbar>
                         <Nav className="ms-auto" navbar >
+                            <NavItem>
+                                <NavLink><Link to="/form1">Form 1</Link></NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink><Link to="/form2">Form 2</Link></NavLink>
+                            </NavItem>
+
 
                             <CartSummary removeFromCart={this.props.removeFromCart} cart={this.props.cart} />
                         </Nav>
