@@ -11,8 +11,11 @@ class Counter extends Component {
     }
 }
 
+//mapStateToProps fonksiyonu, store'daki state'i component'in props'una bağlar. 
 function mapStateToProps(state) {
     return { counter: state.counterReducer }
 }
 
+
+//connect fonksiyonu, mapStateToProps fonksiyonunu alır ve Counter componentini döndürür.
 export default connect(mapStateToProps)(Counter);

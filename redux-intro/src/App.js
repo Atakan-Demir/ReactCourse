@@ -9,8 +9,9 @@ function App() {
     <div >
       <Counter />
       <IncreaseCounter />
-      <DecreaseCounter />
       <IncreaseByTwoCounter />
+      <DecreaseCounter />
+
     </div>
   );
 }

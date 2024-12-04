@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/acrionTypes';
+import * as actionTypes from '../actions/actionTypes';
 
 const counterReducer = (state = 0, action) => {
 
