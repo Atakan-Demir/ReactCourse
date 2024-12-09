@@ -6,13 +6,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'alertifyjs/build/css/alertify.min.css';
 import { Provider } from 'react-redux';
 import configureStore from "./redux/reducers/configureStore"
+import { BrowserRouter } from 'react-router-dom';
 
 
 const store = configureStore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}><App /></Provider>
+  <BrowserRouter>
+    <Provider store={store}><App /></Provider>
+  </BrowserRouter>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
