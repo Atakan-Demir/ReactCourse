@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Badge, Row, Table } from 'reactstrap';
+import { Badge, Button, Row, Table } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import * as productActions from '../../redux/actions/productActions';
+import * as cartActions from '../../redux/actions/cartActions';
+import alertify from 'alertifyjs';
 
 class ProductList extends Component {
 
 
     componentDidMount() {
         this.props.actions.getProducts()
+    }
+
+    addToCart = (product) => {
+        this.props.actions.addToCart({ quantity: 1, product });
+        alertify.success(product.productName + " added to cart!", 2);
     }
 
     render() {
@@ -36,11 +43,13 @@ class ProductList extends Component {
                                 <th>
                                     In Stock
                                 </th>
+                                <th>
+
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-
                                 this.props.products.map(product => (
                                     <tr key={product.id}>
                                         <th scope="row">
@@ -58,12 +67,12 @@ class ProductList extends Component {
                                         <td>
                                             {product.unitsInStock}
                                         </td>
-
+                                        <td>
+                                            <Button onClick={() => this.addToCart(product)} color='success'>+</Button>
+                                        </td>
                                     </tr>
                                 ))
                             }
-
-
                         </tbody>
                     </Table>
                 </Row>
@@ -88,6 +97,7 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: {
             getProducts: bindActionCreators(productActions.getProducts, dispatch),
+            addToCart: bindActionCreators(cartActions.addToCart, dispatch)
         }
     }
 }

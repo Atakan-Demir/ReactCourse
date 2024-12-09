@@ -11,7 +11,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    NavbarText,
+
 } from 'reactstrap';
 
 export default class Navi extends Component {
