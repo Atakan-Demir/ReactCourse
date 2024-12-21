@@ -57,6 +57,7 @@ class ProductList extends Component {
                                             {product.id}
                                         </th>
                                         <td>
+
                                             <Link to={"/saveproduct/" + product.id}>{product.productName}</Link>
 
                                         </td>

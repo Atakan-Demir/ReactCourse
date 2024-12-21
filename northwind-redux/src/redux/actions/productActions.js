@@ -16,6 +16,18 @@ export function getProducts(categoryId) {
     }
 }
 
+export function getProductByIdSuccess(product) {
+    return { type: actionTypes.GET_PRODUCT_BY_ID_SUCCESS, payload: product }
+}
+
+export function getProductById(productId) {
+    return function (dispatch) {
+        let url = "http://localhost:3000/products/" + productId;
+        return fetch(url)
+            .then(response => response.json())
+            .then(result => dispatch(getProductByIdSuccess(result)));
+    }
+}
 
 
 export function createProductSuccess(product) {

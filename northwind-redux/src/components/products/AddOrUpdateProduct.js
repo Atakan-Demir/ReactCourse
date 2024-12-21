@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import { getCategories } from '../../redux/actions/categoryActions'
 import { saveProduct } from '../../redux/actions/productActions'
 import ProductDetail from './ProductDetail'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import initialState from '../../redux/reducers/initialState'
+
+
+
 
 function AddOrUpdateProduct({
     products,
@@ -13,18 +17,20 @@ function AddOrUpdateProduct({
     saveProduct,
     ...props //'...' operatörü, bir dizi veya nesne içindeki öğeleri ayıklamak için kullanılır. Bu, bir dizi veya nesne içindeki öğeleri başka bir diziye veya nesneye kopyalamak için kullanılabilir.
 }) {
+    //const { productId } = useParams();
     // destructuring
-    const [product, setProduct] = useState({ ...props.product })
+    const [product, setProduct] = useState({})
     //statedeki productı setProduct ile güncelleyebiliriz demek
 
     const navigate = useNavigate(); //useNavigate hookunu kullanarak navigate fonksiyonunu çağırı
 
+    initialState.selectedProduct = product;
 
     useEffect(() => {
         if (categories.length === 0) {
             getCategories();
         }
-        setProduct({ ...props.product });
+        setProduct({ ...props.product })
     }, [props.product]);
 
     function handleChange(event) {
@@ -54,17 +60,18 @@ function AddOrUpdateProduct({
 }
 
 export function getProductById(products, productId) {
-    let product = products.find(product => product.id === productId) || null;
+
+    let product = products.find(product => product.id == productId) || null;
     return product;
 }
 
 //ownProps: componentin kendi propsları
-function mapStateToProps(state, ownProps) {
-    const productId = ownProps.match.params.productId;
-    const product = productId && state.productListReducer.length > 0 ?
-        getProductById(state.productListReducer, productId) : {};
+function mapStateToProps(state) {
+    //product ı nasıl alacağımızı belirtiyoruz
+    const product = initialState.selectedProduct;
+    console.log("product", product)
     return {
-        product,//product:product
+        product,
         products: state.productListReducer,
         categories: state.categoryListReducer
     }
